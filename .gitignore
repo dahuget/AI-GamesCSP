@@ -1,2 +1,8 @@
 .DS_Store
-
+.idea/
+csp_post/.idea/
+csp_post/csp_post.iml
+csp_post/out/
+games_post/.idea/
+games_post/games_post.iml
+games_post/out/
