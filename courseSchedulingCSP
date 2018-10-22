@@ -1,0 +1,37 @@
+Question 2
+
+Formulate as CSP the following scheduling problem. You are given n courses (E.g. CSC110, CSC115, …, CSC421,…),
+which are needed for one to graduate, and are asked to create a schedule for taking the courses, subject to
+the following constraints:
+A. Courses might have prerequisite courses that need to be taken before.
+B. Some courses are offered in certain terms only.
+C. We want to take not more than 4 courses per term.
+D. Time conflicts should be avoided.
+Only the formulation is required for this question (no program required). One way of avoiding the
+combinatorics of using 4-course schedules as the values of the variables is to break up each term
+into "term slots." Then, we can turn things around and use the courses themselves as variables and
+use (term-termslottimeslot) triples as the values.
+
+Variables:
+Ci: one for each course, values are (term-termslottimeslot) triples
+
+Domains:
+for each one of the variables Ci, Di is the set of all possible triples
+after filtering out those triples with third element a student can't take Ci
+
+Constraints:
+one for each Ci that Ci is offered in termi
+    (Ci exists in termi)
+
+one for each pair of variables (Ci -> Cj) to avoid time conflicts saying:
+    NOT (termi=termj AND termsloti=termslotj) AND
+    NOT (termi=termj AND timesloti=timeslotj)
+
+one for the uniqueness for each i != j
+    NOT (Ci=Cj), NOT (termi=termj), NOT (timesloti=timeslotj), NOT (termsloti=termslotj)
+
+for all i, if Ci has prerequisite Cj then
+    NOT (termi<termj)
+
+one for limit of four courses
+    if sum of courses > 4 then NOT Ci
