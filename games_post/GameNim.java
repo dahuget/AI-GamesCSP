@@ -13,10 +13,6 @@ public class GameNim extends Game {
         currentState = new StateNim();
     }
 
-    /*
-    //player who did the last move
-        int previous_player = (state.player==0 ? 1 : 0);
-     */
     public boolean isWinState(State state) {
         StateNim tstate = (StateNim) state;
 
@@ -37,7 +33,7 @@ public class GameNim extends Game {
         if(isWinState(state) || isStuckState(state))
             return null;
 
-        Set<State> successors = new HashSet<State>();
+        Set<State> successors = new HashSet<>();
         StateNim tState = (StateNim) state;
 
         StateNim successor_state;
@@ -74,7 +70,8 @@ public class GameNim extends Game {
     public static int checkValidMove(BufferedReader in) throws IOException {
         int move = Integer.parseInt( in.readLine() );
         while (true) {
-            if (move >= 1 || move <= 3) {
+            if (move >= 1 && move <= 3) {
+                //valid move
                 break;
             } else {
                 System.out.print("Invalid move, please choose 1, 2, or 3 > ");
